@@ -81,29 +81,36 @@ header .user_name {
     border-bottom: 2px solid #222;
 }
 
-.posts{
-    border-radius: 4px; 
-    border: 1px solid #ddd;
-}
 .posts > li{
-    padding: 10px;
+    padding: 20px;
     position: relative;
     padding-bottom: 40px;
+    background: #ffffff;
 }
 .posts .comment_pv{
     position: absolute;
-    bottom: 5px;
-    right: 10px;
+    bottom: 10px;
+    right: 20px;
+}
+
+.posts .comment_pv span {
+    color: #999999;
 }
 .posts .author{
     position: absolute;
-    left: 10px;
-    bottom: 5px;
+    left: 60px;
+    bottom: 10px;
     font-size:0;
+    color: #999999;
 }
 .posts .author span{
     margin-right: 5px;
     font-size: 16px;
+    color: #999999;
+}
+.posts .author span a{
+    margin-right: 5px;
+    color: #999999;
 }
 .posts > li:hover {
     background: #f2f2f2;
@@ -132,8 +139,8 @@ header .user_name {
 }
 .posts .userAvator{
     position: absolute;
-    left: 3px;
-    top: 3px;
+    left: 10px;
+    top: 10px;
     width: 40px;
     height: 40px;
     border-radius: 5px;
@@ -143,7 +150,7 @@ header .user_name {
     border-bottom: 1px solid #f2f2f2;
     margin: 10px 0 0 0 ;
     padding: 10px 0;
-    margin-left: 40px;
+    /* margin-left: 40px; */
     word-wrap: break-word;
     word-break: break-all;
 }
@@ -416,6 +423,11 @@ form div {
 .markdown ul li{
     list-style: circle;
     margin-top: 5px;
+    color: #999999;
+}
+
+.markdown ol li {
+    color: #999999;
 }
 
 input:-webkit-autofill {

@@ -3,7 +3,7 @@ function pagination(data, callback) {
     if (!document.getElementById('pageStyle')) {
         var style = document.createElement('style')
         style.id = 'pageStyle'
-        style.innerHTML = '.pagination{text-align:center;margin-top:100px}.pagination a,.pagination span{margin:0 2px;padding:4px 8px;color:#428bca;background:#fff;text-decoration:none;border:1px solid #ddd;border-radius:4px;user-select:none;cursor:pointer}.pagination a:hover,.pagination span:hover{color:#fff;background:#428bca}.pagination .active{color:#fff;background:#428bca;cursor:default;}.pagination input{width:40px;padding:7px 0;border:none;outline:0;border:1px solid #ddd;border-radius:4px;text-align:center;margin:0 5px}.pagination i{font-style: normal;margin:0 5px;color:#999}.pagination input:focus{border:1px solid #428bca}'
+        style.innerHTML = '.pagination{text-align:center;margin-top:100px}.pagination a,.pagination span{margin:0 2px;padding:4px 8px;color:#222;background:#fff;text-decoration:none;border:1px solid #ddd;border-radius:4px;user-select:none;cursor:pointer}.pagination a:hover,.pagination span:hover{color:#fff;background:#222}.pagination .active{color:#fff;background:#222;cursor:default;}.pagination input{width:40px;padding:7px 0;border:none;outline:0;border:1px solid #ddd;border-radius:4px;text-align:center;margin:0 5px}.pagination i{font-style: normal;margin:0 5px;color:#999}.pagination input:focus{border:1px solid #222}'
         document.getElementsByTagName('head')[0].appendChild(style)
     }
     var page = document.getElementById(data.selector.slice(1)),
