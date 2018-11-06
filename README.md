@@ -1,7 +1,7 @@
 ## my-blog
 
 ## 技术栈
-###Koa2 + node + ejs + mysql
+### Koa2 + node + ejs + mysql
 
 ## 创建数据库
 ### 登陆数据库
