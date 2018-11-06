@@ -16,6 +16,7 @@ blockquote {
 
 body {
     margin-bottom: 20px;
+    background: #f5f7f9;
 }
 ul,li{
     list-style-type: none;
@@ -25,8 +26,12 @@ a {
 }
 
 header {
-    width: 60%;
-    margin: 20px auto;
+    width: 100%;
+    color: #ffffff;
+    height: 86px;
+    border-top: 6px solid #222222;
+    margin-bottom: 40px;
+
 }
 header:after{
     content: '';
@@ -34,38 +39,46 @@ header:after{
     display: table;
 }
 header .user_right{
-    float: right
+    float: right;
 }
 header .user_right .active{
-    color: #5FB878;
-    background: #fff;
-    border: 1px solid #5FB878;
-    box-shadow: 0 5px 5px #ccc;
+    color: #222;
+    border-bottom: 2px solid #222222;
 }
 header .user_name {
     float: left
 }
 .user_name {
+    color: #ffffff;
     font-size: 20px;
+    width: 240px;
+    background: #222222;
+    height: 86px;
+    line-height: 86px;
+    text-align: center;
+}
+
+.header_inner {
+    width: 1200px;
+    margin: 0px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .has_user a,
 .has_user span,
 .none_user a {
     padding: 5px 15px;
-    background: #5FB878;
-    border-radius: 15px;
-    color: #fff;
+    color: #222;
     cursor: pointer;
-    border: 1px solid #fff;
-    transition: all 0.3s;
+    font-weight: 500;
+    /* transition: all 0.3s; */
 }
 
 .has_user a:hover,.has_user span:hover{
-    color: #5FB878;
-    background: #fff;
-    border: 1px solid #5FB878;
-    box-shadow: 0 5px 5px #ccc;
+    color: #222;
+    border-bottom: 2px solid #222;
 }
 
 .posts{
@@ -113,9 +126,9 @@ header .user_name {
     font-size: 14px;
 }
 .posts li .title{
-     margin-left: 40px;
-     font-size: 20px;
-     color: #222;
+    margin-left: 40px;
+    font-size: 20px;
+    color: #222;
 }
 .posts .userAvator{
     position: absolute;
@@ -173,22 +186,40 @@ header .user_name {
 
 .submit {
     display: block;
-    width: 100px;
+    width: 1200px;
     height: 40px;
     line-height: 40px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+}
+.submit span {
+    border:1px solid #fff;
+    display: block;
+    width: 100px;
+    background: #5FB878;
+    margin: 0 auto;
     text-align: center;
     border-radius: 4px;
-    background: #5FB878;
     cursor: pointer;
     color: #fff;
     float: left;
-    margin-top: 20px ;
-    border:1px solid #fff;
 }
-.submit:hover{
+.submit span:hover{
     background: #fff;
     color: #5FB878;
     border:1px solid #5FB878;
+}
+
+.avator input{
+    height: 100px;
+}
+
+.avator a{
+    display: block;
+    width: 100%;
 }
 .comment_list{
     border: 1px solid #ddd;
@@ -241,15 +272,13 @@ header .user_name {
 }
 .form {
     margin: 0 auto;
-    width: 50%;
-    margin-top: 20px;
 }
 
 textarea {
     width: 100%;
     height: 150px;
     padding:10px 0 0 10px;
-    font-size: 20px;
+    font-size: 16px;
     border-radius: 4px;   
 	border: 1px solid #d7dde4;
     -webkit-appearance: none;
@@ -261,27 +290,41 @@ textarea#spContent{
 }
 
 .tips {
-    margin: 20px 0;
-    color: #ec5051;
+    color: #ccc;
     text-align: center;
 }
 
+.no_content {
+    margin: 400px auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.no_content i {
+    font-size: 80px;
+    color: #cccccc;
+    margin-bottom: 40px;
+}
+
 .container {
-    width: 60%;
+    width: 1200px;
     margin: 0 auto;
 }
 .form img.preview {
-    width:100px;
-    height:100px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     display: none;
     margin-top:10px;
+    position: absolute;
+    right: 120px;
+    top: 10px;
 }
 input {
     display: block;
     width: 100%;
-    height: 35px;
-    font-size: 18px;
+    height: 30px;
+    font-size: 16px;
     padding: 6px 7px;	
 	border-radius: 4px;   
 	border: 1px solid #d7dde4;
@@ -290,17 +333,29 @@ input {
 
 input:focus,textarea:focus{
     outline: 0;
-    box-shadow: 0 0 0 2px rgba(51,153,255,.2);
-    border-color: #5cadff;
+    /* box-shadow: 0 0 0 2px rgba(51,153,255,.2); */
+    border-color: #222;
 }
 
 input:hover,input:active,textarea:hover,textarea:active{
-    border-color: #5cadff;
+    border-color: #222;
+}
+
+form div {
+    padding: 0 100px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    position: relative;
 }
 
 .create label {
     display: block;
+    text-align: right;
     margin: 10px 0;
+    width: 100px;
+    margin-right: 20px;
+    
 }
 
 .comment_wrap form {
@@ -329,7 +384,7 @@ input:hover,input:active,textarea:hover,textarea:active{
     color: #1E9FFF;
 }
 .container{
-    width: 60%;
+    width: 1200px;
     margin:0 auto;
 }
 .message{
@@ -361,4 +416,8 @@ input:hover,input:active,textarea:hover,textarea:active{
 .markdown ul li{
     list-style: circle;
     margin-top: 5px;
+}
+
+input:-webkit-autofill {
+    -webkit-transition: background-color 10000s cubic-bezier(1, -100, 1, -100) 0s;
 }

@@ -16,6 +16,7 @@ exports.getPosts = async ctx => {
     let res,
         postCount,
         name = decodeURIComponent(ctx.request.querystring.split('=')[1]);
+
     if (ctx.request.querystring) {
         await userModel.findPostCountByName(name)
             .then(result => {

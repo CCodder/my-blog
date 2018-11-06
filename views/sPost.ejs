@@ -33,7 +33,7 @@
 		<% if(session.user){ %>
 		<form class="form" method="post" action="/<%= posts.id %>">
 			<textarea id="spContent" name="content" cols="82"></textarea>
-			<div class="submit">发表留言</div>
+			<div class="submit"><span>发表留言</span></div>
 		</form>
 		<% } else{ %>
 			<p class="tips">登录之后才可以评论哟</p>
