@@ -1,15 +1,15 @@
 const Koa = require('koa');
-const path = require('path')
-const bodyParser = require('koa-bodyparser');
+const path = require('path');
 const ejs = require('ejs');
+const views = require('koa-views'); // 模板呈现中间件
+const router = require('koa-router'); // 路由中间件
+const bodyParser = require('koa-bodyparser'); // 表单解析中间件
 const session = require('koa-session-minimal');
-const MysqlStore = require('koa-mysql-session');
+const MysqlStore = require('koa-mysql-session'); // 处理数据库的中间件
+const staticCache = require('koa-static-cache'); // 文件缓存
 const config = require('./config/default.js');
-const router = require('koa-router')
-const views = require('koa-views')
-// const koaStatic = require('koa-static')
-const staticCache = require('koa-static-cache')
-const app = new Koa()
+// const koaStatic = require('koa-static') //  静态资源加载中间件
+const app = new Koa();
 
 
 // session存储配置

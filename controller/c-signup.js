@@ -1,22 +1,23 @@
 const userModel = require('../lib/mysql.js');
-const md5 = require('md5')
-const checkNotLogin = require('../middlewares/check.js').checkNotLogin
-const checkLogin = require('../middlewares/check.js').checkLogin
+const md5 = require('md5');
+const checkNotLogin = require('../middlewares/check.js').checkNotLogin;
+const checkLogin = require('../middlewares/check.js').checkLogin;
 const moment = require('moment');
-const fs = require('fs')
+const fs = require('fs');
 
+// 注册页面
 exports.getSignup = async ctx => {
-    await checkNotLogin(ctx)
+    await checkNotLogin(ctx);
     await ctx.render('signup', {
         session: ctx.session,
-    })
+    });
 }
 exports.postSignup = async ctx => {
     let { name, password, repeatpass, avator } = ctx.request.body
-    console.log(typeof password)
+    console.log(typeof password);
     await userModel.findDataCountByName(name)
         .then(async (result) => {
-            console.log(result)
+            console.log(result);
             if (result[0].count >= 1) {
                 // 用户存在
                 ctx.body = {

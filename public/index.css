@@ -15,14 +15,23 @@ blockquote {
 }
 
 body {
-    margin-bottom: 20px;
-    background: #f5f7f9;
+    padding-bottom: 20px;
+    background-color: #f5f7f9;
+    background-image: url('./images/bg.png');
+    background-position: left 100px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 ul,li{
     list-style-type: none;
 }
 a {
     text-decoration: none;
+}
+ol {
+    padding-left: 0;
 }
 
 header {
@@ -85,12 +94,13 @@ header .user_name {
     padding: 20px;
     position: relative;
     padding-bottom: 40px;
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.6);
 }
 .posts .comment_pv{
     position: absolute;
     bottom: 10px;
     right: 20px;
+    font-size: 14px;
 }
 
 .posts .comment_pv span {
@@ -113,7 +123,7 @@ header .user_name {
     color: #999999;
 }
 .posts > li:hover {
-    background: #f2f2f2;
+    background: rgba(242, 242, 242, 0.6);
 }
 .posts > li:hover pre{
     border: 1px solid #666;
@@ -122,9 +132,7 @@ header .user_name {
     border-top: 1px solid #fff;
     border-bottom: 1px solid #fff;
 }
-.posts > li + li{
-    border-top: 1px solid #ddd;
-}
+
 .posts li .title span{
     position: absolute;
     left: 10px;
@@ -150,7 +158,7 @@ header .user_name {
     border-bottom: 1px solid #f2f2f2;
     margin: 10px 0 0 0 ;
     padding: 10px 0;
-    /* margin-left: 40px; */
+    margin-left: 40px;
     word-wrap: break-word;
     word-break: break-all;
 }
@@ -168,6 +176,9 @@ header .user_name {
     position: relative;
     top: 2px;
 }
+.posts>li {
+    margin-bottom: 20px;
+}
 .posts li img{
     max-width: 100%;
 }
@@ -178,16 +189,19 @@ header .user_name {
 .spost .edit {
     position: absolute;
     right: 20px;
-    bottom: 5px;
+    bottom: 5px;  
 }
 
 .spost .edit p {
     display: inline-block;
     margin-left: 10px;
 }
+.spost .edit p a{
+    color: #999999;
+}
 
 .comment_wrap {
-    width: 60%;
+    width: 1200px;
     margin: 20px auto;
 }
 
@@ -229,14 +243,16 @@ header .user_name {
     width: 100%;
 }
 .comment_list{
-    border: 1px solid #ddd;
-    border-radius: 4px;
+}
+.cmt_lists {
+    background: rgba(255, 255, 255, 0.6);
+    /* margin-bottom: 20px; */
 }
 .cmt_lists:hover{
-    background: #f2f2f2;
+    background: rgba(242, 242, 242, 0.6);
 }
 .cmt_lists + .cmt_lists{
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #f1f1f1;
 }
 .cmt_content {
     padding: 10px;
@@ -247,18 +263,12 @@ header .user_name {
 .cmt_detail{
     margin-left: 48px;
 }
+.cmt_detail p{
+    font-size: 14px;
+}
 .cmt_content img{
     max-width: 100%;
 }
-/* .cmt_content:after {
-    content: '#content';
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    color: #aaa;
-    font-size: 13px;
-}
- */
 .cmt_name {
     position: absolute;
     right: 8px;
@@ -267,14 +277,14 @@ header .user_name {
 }
 
 .cmt_name a {
-    margin-left: 5px;
+    margin-left: 10px;
     color: #1E9FFF;
 }
 .cmt_time{
     position: absolute;
     font-size: 12px;
-    right: 5px;
-    top: 5px;
+    right: 10px;
+    top: 10px;
     color: #aaa
 }
 .form {
@@ -290,10 +300,12 @@ textarea {
 	border: 1px solid #d7dde4;
     -webkit-appearance: none;
     resize: none;
+    box-sizing: border-box;
 }
 
 textarea#spContent{
-    width: 98%;
+    width: 100%;
+    background: transparent;
 }
 
 .tips {
@@ -316,6 +328,7 @@ textarea#spContent{
 .container {
     width: 1200px;
     margin: 0 auto;
+    margin-bottom: 30px;
 }
 .form img.preview {
     width: 80px;
@@ -374,7 +387,9 @@ form div {
 .delete_post {
     cursor: pointer;
 }
-
+.delete_comment {
+    font-size: 14px;
+}
 .delete_comment:hover,
 .delete_post:hover,
 .author a:hover {
@@ -389,10 +404,6 @@ form div {
 }
 .success{
     color: #1E9FFF;
-}
-.container{
-    width: 1200px;
-    margin:0 auto;
 }
 .message{
     position: fixed;
@@ -413,6 +424,7 @@ form div {
     background: #F0F0F0;
     border-radius: 3px;
     border: 1px solid #fff;
+    color: #999999;
 }
 .markdown blockquote{
     padding: 0 1em;
@@ -425,8 +437,14 @@ form div {
     margin-top: 5px;
     color: #999999;
 }
+/* .markdown {
+    padding-left: 40px;
+} */
 
 .markdown ol li {
+    color: #999999;
+}
+.markdown p {
     color: #999999;
 }
 

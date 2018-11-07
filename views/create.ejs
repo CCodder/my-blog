@@ -9,6 +9,10 @@
 			<label>内容：</label>
 			<textarea placeholder="请输入内容" name="content" id="" cols="42" rows="10"></textarea>
 		</div>
+		<div>
+			<label>标签：</label>
+			<input placeholder="请输入标签名称" type="text" name="tagname">
+		</div>
 		<div class="submit"><span>发表</span></div>
 	</form>
 </div>
@@ -17,7 +21,9 @@
         if ($('input[name=title]').val().trim() == '') {
             fade('请输入标题')
         }else if ($('textarea').val().trim() == '') {
-            fade('请输入内容')
+            fade('请输入内容')         
+        }else if ($('input[name=tagname]').val().trim() == '') {
+            fade('请输入标签名称')
         }else{          
             $.ajax({
                 url: "/create",

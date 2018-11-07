@@ -116,36 +116,44 @@ exports.getCreate = async ctx => {
  * 发表文章
  */
 exports.postCreate = async ctx => {
-    let {title,content} = ctx.request.body,
-        id = ctx.session.id,
-        name = ctx.session.user,
-        time = moment().format('YYYY-MM-DD HH:mm:ss'),
-        avator,
-        // 现在使用markdown不需要单独转义
-        newContent = content.replace(/[<">']/g, (target) => {
-            return {
-                '<': '&lt;',
-                '"': '&quot;',
-                '>': '&gt;',
-                "'": '&#39;'
-            }[target]
-        }),
-        newTitle = title.replace(/[<">']/g, (target) => {
-            return {
-                '<': '&lt;',
-                '"': '&quot;',
-                '>': '&gt;',
-                "'": '&#39;'
-            }[target]
-        });
+    let {title,content,tagname} = ctx.request.body,
+    id = ctx.session.id,
+    name = ctx.session.user,
+    time = moment().format('YYYY-MM-DD HH:mm:ss'),
+    avator,
+    postid,
+    // 现在使用markdown不需要单独转义
+    newContent = content.replace(/[<">']/g, (target) => {
+        return {
+            '<': '&lt;',
+            '"': '&quot;',
+            '>': '&gt;',
+            "'": '&#39;'
+        }[target]
+    }),
+    newTitle = title.replace(/[<">']/g, (target) => {
+        return {
+            '<': '&lt;',
+            '"': '&quot;',
+            '>': '&gt;',
+            "'": '&#39;'
+        }[target]
+    });
+    console.log(tagname);
 
 
     await userModel.findUserData(ctx.session.user)
         .then(res => {
             avator = res[0]['avator']
         })
-    await userModel.insertPost([name, newTitle, md.render(content), content, id, time, avator])
-        .then(() => {
+
+    await userModel.findTagsData(tagname).then((res) => {
+        if (!res.length) {
+            userModel.posttagsData([tagname, id]);
+        }
+    });
+    await userModel.insertPost([name, newTitle, md.render(content), content, id, time, avator,tagname])
+        .then((res) => {
             ctx.body = {
                 code:200,
                 message:'发表文章成功'
