@@ -26,6 +26,7 @@ exports.getPosts = async ctx => {
             .then(result => {
                 res = result
             })
+
         await ctx.render('selfPosts', {
             session: ctx.session,
             posts: res,
@@ -40,6 +41,7 @@ exports.getPosts = async ctx => {
             .then(result => {
                 postCount = result[0].count
             })
+            // console.log(res);
         await ctx.render('posts', {
             session: ctx.session,
             posts: res,

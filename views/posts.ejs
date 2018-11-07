@@ -22,7 +22,7 @@
 					<%- res.title %>
 				</div>
 				<div class="content markdown">
-					<%- res.content %>
+					<%- res.md %>
 				</div>
 			</a>
 		</li>
@@ -58,11 +58,11 @@
 			},
 			cache: false,
 			success: function (msg) {
-				console.log(msg)
+				// console.log(msg)
 				if (msg != 'error') {
 					$('.posts').html(' ')
 					$.each(msg, function (i, val) {
-						//console.log(val.content)
+						// console.log(val.content)
 						$('.posts').append(
 							'<li>' +
 							'<div class=\"author\">' +
@@ -80,7 +80,7 @@
 							val.title +
 							'</div>' +
 							'<div class=\"content markdown\">' +
-							val.content +
+							val.md +
 							'</div>' +
 							'</a>' +
 							'</li>'

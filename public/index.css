@@ -437,9 +437,9 @@ form div {
     margin-top: 5px;
     color: #999999;
 }
-/* .markdown {
-    padding-left: 40px;
-} */
+.markdown {
+    color: #999999;
+}
 
 .markdown ol li {
     color: #999999;
