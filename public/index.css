@@ -18,9 +18,9 @@ body {
     padding-bottom: 20px;
     background-color: #f5f7f9;
     background-image: url('./images/bg.png');
-    background-position: left 100px;
+    background-position: left bottom;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     min-height: 100vh;
     box-sizing: border-box;
 }
@@ -137,7 +137,7 @@ header .user_name {
     position: absolute;
     left: 10px;
     top: 10px;
-    color: #5FB878;
+    color: #222222;
     font-size: 14px;
 }
 .posts li .title{
@@ -220,7 +220,7 @@ header .user_name {
     border:1px solid #fff;
     display: block;
     width: 100px;
-    background: #5FB878;
+    background: #222222;
     margin: 0 auto;
     text-align: center;
     border-radius: 4px;
@@ -230,8 +230,8 @@ header .user_name {
 }
 .submit span:hover{
     background: #fff;
-    color: #5FB878;
-    border:1px solid #5FB878;
+    color: #222222;
+    border:1px solid #222222;
 }
 
 .avator input{
