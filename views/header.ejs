@@ -28,7 +28,7 @@
 					dataType: 'json',
 					success: function (msg) {
 						if (msg) {
-							fade('登出成功')
+							fade('退出成功')
 							setTimeout(function () {
 								location.href = "/posts"
 							}, 1500)
@@ -70,13 +70,18 @@
 					<% }else{ %>
 						<a href="/posts?author=<%= session.user %>">我的文章</a>
 					<% }%>
+					<% if(type == 'tags'){ %>
+						<a class="active" href="/posts?tagList=<%= session.user %>">我的标签</a>
+					<% }else{ %>
+						<a href="/posts?tagList=<%= session.user %>">我的标签</a>
+					<% }%>
 					<% if(type == 'create'){ %>
 						<a class="active" href="/create">发表文章</a>
 					<% }else{ %>
 						<a href="/create">发表文章</a>
 					<% }%>
 
-					<span class="signout">登出</span>
+					<span class="signout">退出</span>
 				</div>
 			<% } %>
 			<% if(!session.user){ %>

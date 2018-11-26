@@ -17,6 +17,10 @@ router.get('/create', controller.getCreate)
 router.post('/create', controller.postCreate)
 // 发表评论
 router.post('/:postId',controller.postComment)
+// 点赞
+router.post('/posts/:postId/addLikes',controller.addLikes)
+// 取消点赞
+router.post('/posts/:postId/reduceLikes',controller.reduceLike)
 // 编辑单篇文章页面
 router.get('/posts/:postId/edit', controller.getEditPage)
 // post 编辑单篇文章

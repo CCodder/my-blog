@@ -15,23 +15,35 @@ exports.getRedirectPosts = async ctx => {
 exports.getPosts = async ctx => {
     let res,
         postCount,
+        tagsList,
         name = decodeURIComponent(ctx.request.querystring.split('=')[1]);
 
-    if (ctx.request.querystring) {
-        await userModel.findPostCountByName(name)
-            .then(result => {
-                postCount = result[0].count
+    if (ctx.request.querystring) { 
+        if (ctx.request.querystring.split('=')[0] === 'author') {
+            await userModel.findPostCountByName(name)
+                .then(result => {
+                    postCount = result[0].count
+                })
+            await userModel.findPostByUserPage(name, 1)
+                .then(result => {
+                    res = result
+                })
+    
+            await ctx.render('selfPosts', {
+                session: ctx.session,
+                posts: res,
+                postsPageLength: Math.ceil(postCount / 10),
             })
-        await userModel.findPostByUserPage(name, 1)
-            .then(result => {
-                res = result
+        } else {
+            await userModel.findTagsData(name).then(res => {
+                console.log(res);
+                tagsList = res;
             })
-
-        await ctx.render('selfPosts', {
-            session: ctx.session,
-            posts: res,
-            postsPageLength: Math.ceil(postCount / 10),
-        })
+            await ctx.render('tags', {
+                session: ctx.session,
+                tagsList,
+            })
+        }
     } else {
         await userModel.findPostByPage(1)
             .then(result => {
@@ -80,12 +92,17 @@ exports.postSelfPage = async ctx => {
  */
 exports.getSinglePosts = async ctx => {
     let postId = ctx.params.postId,
+        name = ctx.session.user,
         count,
         res,
         pageOne;
     await userModel.findDataById(postId)
         .then(result => {
             res = result
+        })
+    await userModel.findLikesById(postId)
+        .then(result => {
+            isLike  = result.length && result.some( item => item.name === name);
         })
     await userModel.updatePostPv(postId)
     await userModel.findCommentByPage(1, postId)
@@ -99,6 +116,7 @@ exports.getSinglePosts = async ctx => {
     await ctx.render('sPost', {
         session: ctx.session,
         posts: res[0],
+        isLike,
         commentLength: count,
         commentPageLength: Math.ceil(count / 10),
         pageOne: pageOne
@@ -141,7 +159,6 @@ exports.postCreate = async ctx => {
             "'": '&#39;'
         }[target]
     });
-    console.log(tagname);
 
 
     await userModel.findUserData(ctx.session.user)
@@ -149,13 +166,10 @@ exports.postCreate = async ctx => {
             avator = res[0]['avator']
         })
 
-    await userModel.findTagsData(tagname).then((res) => {
-        if (!res.length) {
-            userModel.posttagsData([tagname, id]);
-        }
-    });
+    await userModel.posttagsData([name, tagname, id, newTitle]);
     await userModel.insertPost([name, newTitle, md.render(content), content, id, time, avator,tagname])
         .then((res) => {
+            console.log(res);
             ctx.body = {
                 code:200,
                 message:'发表文章成功'
@@ -213,6 +227,52 @@ exports.getEditPage = async ctx => {
         postsTitle: res.title
     })
 
+}
+/**
+ * +点赞
+ */
+exports.addLikes = async ctx => {
+    let name = ctx.session.user,
+        postId = ctx.params.postId,
+        time = moment().format('YYYY-MM-DD HH:mm:ss'),
+        avator;
+    await userModel.findUserData(ctx.session.user)
+        .then(res => {
+            avator = res[0]['avator']
+        })
+    await userModel.giveLike([name, time, postId, avator])
+    await userModel.addGiveLikeCount(postId)
+        .then(() => {
+            ctx.body = {
+                code:200,
+                message:'点赞成功'
+            }
+        }).catch(() => {
+            ctx.body = {
+                code: 500,
+                message: '点赞失败'
+            }
+        })
+}
+/**
+ * -点赞
+ */
+exports.reduceLike = async ctx => {
+    let name = ctx.session.user,
+        postId = ctx.params.postId;
+    await userModel.deleteLike(name, postId)
+    await userModel.reduceGiveLikeCount(postId)
+        .then(() => {
+            ctx.body = {
+                code:200,
+                message:'点赞成功'
+            }
+        }).catch(() => {
+            ctx.body = {
+                code: 500,
+                message: '点赞失败'
+            }
+        })
 }
 /**
  * post 编辑单篇文章

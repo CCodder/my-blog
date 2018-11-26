@@ -60,4 +60,5 @@ app.use(require('./routers/signout.js').routes())
 
 app.listen(config.port)
 
-console.log(`listening on port ${config.port}`)
+// console.log(`listening on port ${config.port}`)
+console.log(`Server running at http://127.0.0.1:${config.port}/`);

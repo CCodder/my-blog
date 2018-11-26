@@ -6,6 +6,7 @@
 					<span title="<%= posts.name %>"><a href="/posts?author=<%= posts.name %> ">作者: <%= posts.name %></a></span>
 					<span>评论数：<%= posts.comments %></span>
 					<span>浏览量：<%= posts.pv %></span>
+					<span>点赞数：<%= posts.likes %></span>
 				</div>
 				<div class="comment_pv">
 					<span><%= posts.moment %></span>
@@ -20,9 +21,15 @@
 					</div>
 				</a>
 				<div class="edit">
-					<% if(session && session.user ===  posts.name  ){ %>
-					<p><a href="<%= posts['id'] %>/edit">编辑</a></p>
-					<p><a class="delete_post">删除</a></p>
+					<% if(session && session.user ===  posts.name){ %>
+						<p><a href="<%= posts['id'] %>/edit">编辑</a></p>
+						<p><a class="delete_post">删除</a></p>
+					<% } else{ %>
+						<% if(isLike){ %>
+							<div class="iconfont hasGiveLike">&#xe62c;</div>
+						<% } else { %>
+							<div class="iconfont giveLike">&#xe62c;</div>
+						<% } %>
 					<% } %>
 				</div>
 			</li>
@@ -127,6 +134,58 @@
 				}
 			})
 		})
+
+		// 点赞
+		$('.giveLike').click(function() {
+			if (!userName) {
+				fade('请先登录～');
+			} else {
+				$.ajax({
+					url: "<%= posts.id %>/addLikes",
+					type: 'POST',
+					cache: false,
+					success: function (msg) {
+						if (msg.code == 200) {
+							fade('点赞成功')
+							setTimeout(function() {
+								location.reload()
+							}, 1000)
+						} else {
+							fade('点赞失败');
+						} 
+					},
+					error: function () {
+						alert('点赞失败')
+					}
+				})
+			}
+		})
+		// -点赞
+		$('.hasGiveLike').click(function() {
+			if (!userName) {
+				fade('请先登录～');
+			} else {
+				$.ajax({
+					url: "<%= posts.id %>/reduceLikes",
+					type: 'POST',
+					cache: false,
+					success: function (msg) {
+						if (msg.code == 200) {
+							fade('取消点赞成功')
+							setTimeout(function() {
+								location.reload()
+							}, 1000)
+						} else {
+							fade('取消点赞失败');
+						} 
+					},
+					error: function () {
+						alert('取消点赞失败')
+					}
+				})
+			}
+		})
+
 		// 评论
 		var isAllow = true
 		$('.submit').click(function(){
@@ -178,5 +237,6 @@
 				}
 			})
 		}
+
 	</script>
 <% include footer %>

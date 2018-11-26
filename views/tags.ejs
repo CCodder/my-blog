@@ -1,0 +1,26 @@
+<%- include("header",{type:'tags'}) %>
+<div class="container tags_list">
+    <% if(tagsList.length > 0 ){  %>
+        <% tagsList.forEach(function(res){ %>
+            <a href="/posts/<%= res.id %>" class="tag_item">
+                <div title="<%= res.title %>">
+                    <%= res.tagname %>
+                </div>
+            </a>
+        <% }) %>
+    <% } %>
+</div>
+
+<script>
+let item = $('.tags_list').find('a');
+item.each(function(index, item) {
+    $(this).hide();
+    $(this).css({
+        left: Math.round(Math.random()*800 + 300),
+        top: Math.round(Math.random()*500 + 40)
+    }).show('slow');
+})
+</script>
+
+<% include footer %>
+

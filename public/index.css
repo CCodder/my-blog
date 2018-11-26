@@ -184,7 +184,7 @@ header .user_name {
 }
 .spost .comment_pv{
     position: absolute;
-    top: 10px;
+    top: 20px;
 }
 .spost .edit {
     position: absolute;
@@ -437,7 +437,7 @@ form div {
     margin-top: 5px;
     color: #999999;
 }
-.markdown {
+.markdown, .markdown *{
     color: #999999;
 }
 
@@ -450,4 +450,42 @@ form div {
 
 input:-webkit-autofill {
     -webkit-transition: background-color 10000s cubic-bezier(1, -100, 1, -100) 0s;
+}
+
+.giveLike {
+    cursor: pointer;
+    color: #999999;
+}
+.hasGiveLike {
+    cursor: pointer;
+    color: #1E9FFF;
+}
+.tags_list {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.tag_item {
+    display: block;
+    padding: 10px 30px;
+    background: #222222;
+    color: #ffffff;
+    border-radius: 8px;
+    margin-right: 30px;
+    box-sizing: border-box;
+    position: absolute;
+}
+.tag_item div {
+    color: #ffffff;
+}
+
+.tag_item:hover {
+    background: transparent;
+    border: 1px solid #222222;
+    box-sizing: border-box;
+}
+
+.tag_item:hover div {
+    color: #222222;
 }
