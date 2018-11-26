@@ -455,10 +455,18 @@ input:-webkit-autofill {
 .giveLike {
     cursor: pointer;
     color: #999999;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 10;
 }
 .hasGiveLike {
     cursor: pointer;
     color: #1E9FFF;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 10;
 }
 .tags_list {
     display: flex;

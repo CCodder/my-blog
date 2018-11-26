@@ -3,7 +3,7 @@
 		<ul class="posts spost">
 			<li>
 				<div class="author">
-					<span title="<%= posts.name %>"><a href="/posts?author=<%= posts.name %> ">作者: <%= posts.name %></a></span>
+					<span title="<%= posts.name %>"><a>作者: <%= posts.name %></a></span>
 					<span>评论数：<%= posts.comments %></span>
 					<span>浏览量：<%= posts.pv %></span>
 					<span>点赞数：<%= posts.likes %></span>
@@ -11,7 +11,7 @@
 				<div class="comment_pv">
 					<span><%= posts.moment %></span>
 				</div>
-				<a href="/posts/<%= posts.id %>">
+				<a>
 					<div class="title">
 						<img class="userAvator" src="../images/<%= posts.avator %>" alt="avator">
 						<%- posts.title %>
